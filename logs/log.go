@@ -27,21 +27,21 @@ func Close() {
 	}
 }
 
-func Error(stack []byte, err error) {
+func Error(stack string, err error) {
 	if errorClient != nil {
 		errorClient.Report(errorreporting.Entry{
 			Error: err,
-			Stack: stack,
+			Stack: []byte(stack),
 		})
 	}
 }
 
-func ErrorHttp(stack []byte, err error, req *http.Request) {
+func ErrorHttp(stack string, err error, req *http.Request) {
 	if errorClient != nil {
 		errorClient.Report(errorreporting.Entry{
 			Req:   req,
 			Error: err,
-			Stack: stack,
+			Stack: []byte(stack),
 		})
 	}
 }
